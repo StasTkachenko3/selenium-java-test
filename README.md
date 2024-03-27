@@ -26,9 +26,9 @@ Advantages of using Selenium:
   <li>Test scripts can be written in any of these programming languages: Java, Python, 
 C #, PHP, Ruby, Perl</li>
   <li>Tests can be performed on any of these operating systems: Windows, Mac, or Linux.</li>
-  <li>Тесты можно проводить в любом браузере: Mozilla 
+  <li>Tests can be performed in any browser: Mozilla 
 Firefox, Internet Explorer, Google Chrome, Microsoft 
-Edge, Safari или Opera.</li>
+Edge, Safari or Opera.</li>
   <li>Selenium can be integrated with tools such as TestNG and JUnit to manage test
 cases and generate reports</li>
   <li>Selenium can be integrated with Maven, Jenkins and Docker to ensure continuous testing</li>
@@ -45,13 +45,6 @@ Before you can start performing Java automation testing with Selenium, you would
 
 - Install **Maven** which supports **JUnit** framework out of the box. **Maven** can be downloaded and installed following the steps from [the official website](https://maven.apache.org/).
 
-- ## Running Examples
-- Download the zip or clone the Git repository.
-- Unzip the zip file (if you downloaded one).
-- Open Command Prompt and Change directory (cd) to folder containing pom.xml
-- Open Eclipse
-- ### References
-
 #### Selenium Standalone
 
 - Manual Installation - https://github.com/lmc-eu/steward/wiki/Selenium-server-&-browser-drivers
@@ -59,47 +52,36 @@ Before you can start performing Java automation testing with Selenium, you would
 - URL - http://localhost:4444/wd/hub
 
 ##### Installation and Launch
+<ol>
+ 
+ <li>Step I : Install IntelliJ IDEA</li>
+  <ul><li>https://www.jetbrains.com/idea/download/?ysclid=lu9zuetvnf195589274&section=windows</li></ul>
+ <li>Step II : Install selenium-standalone.Latest stable version 3.141.59</li>
+ <ul><li>https://tencrypto.github.io/downloads/</li></ul>
 
-- Step I : Install NPM
-- Step II : Install selenium-standalone
-Terminal or Command Prompt
-```
+</ol>
+<hr>
 # In Windows, Run CMD as Administrator
+<p>A new version of Java is installed, we check it via the Command line</p>
 
-npm install selenium-standalone@latest -g
-# If need use sudo npm install selenium-standalone@latest -g
-
-selenium-standalone install
-# if needed use sudo 
-```
-- Step III : Launch Selenium Standalone
-```
-selenium-standalone start
+ ```
+selenium-standalone start -- java -version
 ```
 
-> By default, google chrome, firefox and phantomjs are available when installed on the host system
-```
-# install a single driver within the default list (chrome, ie, edge, firefox) 
-selenium-standalone install --singleDriverInstall=chrome
-```
-
-Reference 
-- More Options - https://www.npmjs.com/package/selenium-standalone#command-line-interface
 
 #### Selenium Grid
 - URL -http://localhost:4444/grid/console
 
 ##### Installation and Launch
-- Follow Step I and II of Selenium Standalone
 - Step III
 
 ```
 selenium-standalone start -- -role hub
 selenium-standalone start -- -role node -hub http://localhost:4444/grid/register
 selenium-standalone start -- -role node -hub http://localhost:4444/grid/register -port 5556
-
-selenium-standalone start -- -role node -hub http://localhost:4444/grid/register -browser browserName=firefox
-
+```
+```
+selenium-standalone start -- -role node -hub http://localhost:4444/grid/register -browser browserName=Chrome
 selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -port 5556 -browser browserName=chrome,maxInstances=2
 ```
 
@@ -120,8 +102,6 @@ selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -
     </dependency>
 
   
-
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -142,7 +122,6 @@ selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -
       <version>3.13.0</version>
       <scope>test</scope>
     </dependency>
-
 
 
     <dependency>
@@ -176,7 +155,7 @@ selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -
     </dependency>
 
 ```
-###### Test Selenium Dependencies
+###### Test Selenium Dependencies(Example)
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -184,17 +163,29 @@ selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>test_selenium</artifactId>
+    <groupId>org.testing</groupId>
+    <artifactId>selenium-java-test</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.17.0</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -206,35 +197,73 @@ selenium-andalone start -- -role node -hub http://localhost:4444/grid/register -
 ```
 
 
-##### Java Code
+###### Chrome Driver/Java Code
 
-###### Chrome Driver
-
-```java
+```
   ChromeDriverManager.getInstance().setup();
   driver = new ChromeDriver();
 ```
 
-###### Firefox Driver
+###### Firefox Driver/Java Code
 
-```java
+```
   FirefoxDriverManager.getInstance().setup();
   driver = new FirefoxDriver();
 ```
 
 ######  Test Selenium
 ```
+package org.testing;
+
+import org.junit.Test;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class Test {
-    public static void main(String[] args) {
+import java.net.MalformedURLException;
+import java.net.URL;
 
+/**
+ * Web page testing class.
+ *
+ * @version 1.0.0
+ * @autor StasTkachenko3
+ */
+public class Test1 {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+    /*
+       ______     __
+      / ____/__  / /__  ____  (_)_  ______ ___
+      \__ \/ _ \/ / _ \/ __ \/ / / / / __ `__ \
+    ___/ /  __/ /  __/ / / / / /_/ / / / / / /
+    /____/\___/_/\___/_/ /_/_/\__,_/_/ /_/ /_/
+    ------------------------------------------
 
-        driver.get("https://www.youtube.com/watch?v=YxNFgWsvhFs");
+    */
+
+    /**
+     * The method opens the page and checks its title in the browser.
+     *
+     * @throws MalformedURLException
+     */
+    @Test
+    public void test1() throws MalformedURLException {
+
+        DesiredCapabilities capability = new DesiredCapabilities();
+        capability.setBrowserName("chrome");
+        capability.setPlatform(Platform.WIN10);
+        // Create a new driver instance.
+        WebDriver driver;
+        driver = new RemoteWebDriver(new URL("http://192.168.99.1:4444/wd/hub"), capability);
+        driver.manage().window().maximize();
+        // Opening a page in the browser.
+        driver.get("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
+        // Check the page title.
+        System.out.println("Title of the page is " + driver.getTitle());
+        // After the test you need to close the browser.
+        driver.quit();
+
     }
 }
 ```
