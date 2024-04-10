@@ -64,7 +64,7 @@ The next step to make sure that Selenium is connected successfully is to paste t
 
 #### Code Snippets
 
-``` xml
+```java
 
 
         import org.openqa.selenium.WebDriver;
@@ -80,21 +80,21 @@ The next step to make sure that Selenium is connected successfully is to paste t
 <h2>If you do not want or cannot edit the PATH variable, try registering the path to the driver - before the WebDriver driver line = ... insert</h2>
 <br>
 
-```
+```java
 System.setProperty("webdriver.gecko.driver", "C:/webdrivers/geckodriver.exe");
 ```
 
 <h2>First of all, you need to connect By in Java, this is done as follows:</h2>
 <br>
 
-```
+```java
   import org.openqa.selenium.By;
 ```
 
 <H2>It is often not enough just to find an element. To perform some actions on the found, connect the WebElement</H2>
 <br>
 
-```
+```java
 import org.openqa.selenium.WebElement;
 ```
 <h2>Example of searching for items</h2>
@@ -114,12 +114,12 @@ Test objectives:
 <h2 align="center">  Filling in a simple form </h2>
 Let's use the most reliable method - by id. After examining the source code of the page, you will see the following code
 
-```
+```xml
 <input type="text" id="name1" name="url1">
 ```
 Therefore, the required id is "name1"
 
-```
+```java
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -148,7 +148,7 @@ public class webDriverDemo1 {
 
 Using linkText, we will find all the links with the text Renovation, select the first one and click on it.
 
-```
+```java
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -177,7 +177,7 @@ All links in this example also have the same text - Italy. But we can't use the 
 
 We will look for a link, that is, cssSelector a, with the march8 class
 
-```
+```java
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -204,7 +204,7 @@ public class webDriverDemo1 {
 <h2 align="center"> Click on the image</h2>
 Now let's look at the picture. Let's use the tag search.
 
-```
+```java
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -232,7 +232,7 @@ The elements can be loaded onto the page at different speeds. To save yourself f
 
 In the following example, you can visit the site search page urn.su wait for the Yandex script to load, insert the word java into the search, just to be safe, wait for the Find button to load and click on it.
 
-```
+```java
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -274,188 +274,6 @@ public class WebDriverExplicitWait {
 }
 ```
 
-<h2>If you don't have any imported packages, then you can use one of the following</h2>
-
-##### Maven Dependencies
-
-###### JUnit
-
-```xml
-  <dependencies>
-  
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>3.13.0</version>
-      <scope>test</scope>
-    </dependency>
-
-  
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-  
-  </dependencies>
-```
-###### Test NG
-
-```xml
-  <dependencies>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>3.13.0</version>
-      <scope>test</scope>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>6.14.3</version>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-
-```
-
-###### Other Dependencies
-
-```xml
-    
-
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi</artifactId>
-      <version>3.6</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>3.6</version>
-      <scope>test</scope>
-    </dependency>
-
-```
-###### Test Selenium Dependencies(Example)
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.testing</groupId>
-    <artifactId>selenium-java-test</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.17.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-server</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-</project>
-```
-
-
-###### Chrome Driver/Java Code
-
-```
-  ChromeDriverManager.getInstance().setup();
-  driver = new ChromeDriver();
-```
-
-###### Firefox Driver/Java Code
-
-```
-  FirefoxDriverManager.getInstance().setup();
-  driver = new FirefoxDriver();
-```
-
-######  Test Selenium
-```
-package org.testing;
-
-import org.junit.Test;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-/**
- * Web page testing class.
- *
- * @version 1.0.0
- * @autor StasTkachenko3
- */
-public class Test1 {
-
-    /*
-       ______     __
-      / ____/__  / /__  ____  (_)_  ______ ___
-      \__ \/ _ \/ / _ \/ __ \/ / / / / __ `__ \
-    ___/ /  __/ /  __/ / / / / /_/ / / / / / /
-    /____/\___/_/\___/_/ /_/_/\__,_/_/ /_/ /_/
-    ------------------------------------------
-
-    */
-
-    /**
-     * The method opens the page and checks its title in the browser.
-     *
-     * @throws MalformedURLException
-     */
-    @Test
-    public void test1() throws MalformedURLException {
-
-        DesiredCapabilities capability = new DesiredCapabilities();
-        capability.setBrowserName("chrome");
-        capability.setPlatform(Platform.WIN10);
-        // Create a new driver instance.
-        WebDriver driver;
-        driver = new RemoteWebDriver(new URL("http://192.168.99.1:4444/wd/hub"), capability);
-        driver.manage().window().maximize();
-        // Opening a page in the browser.
-        driver.get("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
-        // Check the page title.
-        System.out.println("Title of the page is " + driver.getTitle());
-        // After the test you need to close the browser.
-        driver.quit();
-
-    }
-}
-```
 
    - File -> Import -> Existing Maven Project -> Navigate to the folder where you unzipped the zip
    - Select the right project
