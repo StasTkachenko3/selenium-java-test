@@ -1,6 +1,8 @@
 
 
-<a href="https://selenium.dev"><img src="https://selenium.dev/images/selenium_logo_square_green.png" width="180" alt="Selenium"/></a>
+<a href="https://selenium.dev"><img src="https://avatars.mds.yandex.net/i?id=bc343f52743c44359e2483527748411041d7285a-8534972-images-thumbs&n=13" width="170" alt="Selenium"/></a>
+<a href="https://logodix.com"><img src="https://logodix.com/logo/1798548.png" width="300" alt="intellij-idea"/></a>
+<a href="https://avatars.dzeninfra.ru"><img src="https://logocharts.com/wp-content/uploads/2021/12/Java-Logo-1600x1600.png" width="200" alt="Java"/></a>
 
 <b>
  <h2>What is Selenium?</h2>
