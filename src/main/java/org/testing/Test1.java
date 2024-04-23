@@ -1,53 +1,26 @@
 package org.testing;
-
-import org.junit.Test;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Web page testing class.
- *
- * @version 1.0.0
- * @autor StasTkachenko3
- */
 public class Test1 {
+    public static void main(String[] args) {
 
-    /*
-       ______     __
-      / ____/__  / /__  ____  (_)_  ______ ___
-      \__ \/ _ \/ / _ \/ __ \/ / / / / __ `__ \
-    ___/ /  __/ /  __/ / / / / /_/ / / / / / /
-    /____/\___/_/\___/_/ /_/_/\__,_/_/ /_/ /_/
-    ------------------------------------------
-
-    */
-
-    /**
-     * The method opens the page and checks its title in the browser.
-     *
-     * @throws MalformedURLException
-     */
-    @Test
-    public void test1() throws MalformedURLException {
-
-        DesiredCapabilities capability = new DesiredCapabilities();
-        capability.setBrowserName("chrome");
-        capability.setPlatform(Platform.WIN10);
-        // Create a new driver instance.
-        WebDriver driver;
-        driver = new RemoteWebDriver(new URL("http://192.168.99.1:4444/wd/hub"), capability);
-        driver.manage().window().maximize();
-        // Opening a page in the browser.
-        driver.get("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
-        // Check the page title.
-        System.out.println("Title of the page is " + driver.getTitle());
-        // After the test you need to close the browser.
-        driver.quit();
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize(); // разворачивает браузер на весь экран
+        driver.get("https://hippocrates64.ru/"); // открывает сайт
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // ожидание отображения страницы
+        WebElement renovationLink = driver.findElements(By.linkText("Медицинские работники")).get(0);
+        renovationLink.click();
+        WebElement searchFiled = driver.findElement(By.xpath("//*[@id=\"profile_45\"]/ul/li/a"));
+        searchFiled.sendKeys("card.php?idd=45");
+        searchFiled.click();
+        System.out.println("Заголовок страницы - " + driver.getTitle());
+        System.out.println("Страница не доступна!");
 
     }
 }
