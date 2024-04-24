@@ -4,10 +4,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-
 import java.util.concurrent.TimeUnit;
+ /*
+       ______     __
+      / ____/__  / /__  ____  (_)_  ______ ___
+      \__ \/ _ \/ / _ \/ __ \/ / / / / __ `__ \
+    ___/ /  __/ /  __/ / / / / /_/ / / / / / /
+    /____/\___/_/\___/_/ /_/_/\__,_/_/ /_/ /_/
+    ------------------------------------------
 
+ */
+
+/**
+ * Класс представляет собой автотест функциональности веб-страницы.
+ * Осуществляет  воспроизведение ознакомительного видео веб сайта.
+ * @author Stanislav Tkachenko
+ * @version 1.0.0
+ */
 public class Test2 {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
